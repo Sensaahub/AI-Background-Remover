@@ -48,6 +48,13 @@ with col1:
         image.thumbnail((1024, 1024))
         st.image(image, use_container_width=True)
 
+        w, h = image.size
+        megapixel = (w * h) / 1_000_000
+
+        if megapixel > 2.5:
+            fast_mode = True
+            st.warning("⚡ Gambar besar → otomatis pakai Fast Mode")
+
         estimasi = estimasi_waktu(image, fast_mode)
         st.info(f"⏱️ Estimasi waktu: ± {estimasi} detik")
 
